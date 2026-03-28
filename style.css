@@ -1,0 +1,277 @@
+/* --- Variables & Reset --- */
+:root {
+    --primary-color: #4f46e5; /* Indigo */
+    --secondary-color: #9333ea; /* Purple */
+    --bg-dark: #0f172a;
+    --text-dark: #1e293b;
+    --text-light: #f8fafc;
+    --bg-light: #f1f5f9;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+/* --- Custom Animated Cursor --- */
+body {
+    cursor: none; /* Hides the default computer mouse */
+}
+
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    z-index: 9999; /* Keeps it above everything */
+    pointer-events: none; /* Lets you click through it */
+    transform: translate(-50%, -50%);
+}
+
+.cursor-outline {
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--primary-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    z-index: 9998;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background-color 0.2s; 
+}
+
+/* When the mouse hovers over a clickable item */
+.cursor-outline.hovering {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(79, 70, 229, 0.1); /* Light blue fill */
+    border-color: transparent;
+}
+
+/* --- Logo Animation Update --- */
+.logo { 
+    font-size: 1.5rem; 
+    font-weight: 700; 
+    color: var(--bg-dark); 
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+/* Slight bounce when hovering over the logo */
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.logo span { 
+    /* The animated gradient shine */
+    background: linear-gradient(120deg, var(--primary-color), var(--secondary-color), var(--primary-color));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShine 3s linear infinite;
+}
+
+@keyframes gradientShine {
+    to {
+        background-position: 200% center;
+    }
+}
+/* --- Utilities --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.section { padding: 100px 0; }
+.bg-light { background-color: var(--bg-light); }
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: var(--bg-dark);
+}
+
+/* --- Buttons --- */
+.btn {
+    padding: 12px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+    display: inline-block;
+}
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+}
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+}
+.btn-secondary {
+    background: transparent;
+    color: var(--text-light);
+    border: 2px solid rgba(255,255,255,0.3);
+}
+.btn-secondary:hover {
+    background: rgba(255,255,255,0.1);
+}
+.btn-nav {
+    background: var(--primary-color);
+    color: #fff !important;
+    padding: 8px 20px;
+    border-radius: 6px;
+}
+.btn-whatsapp {
+    background: #25D366;
+    color: #fff;
+}
+.btn-whatsapp:hover { background: #1ebe57; color: #fff; }
+
+/* Initial Load Animation for Navbar */
+.navbar {
+    animation: slideDown 0.8s ease-out forwards;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* --- Navbar --- */
+.navbar {
+    position: fixed;
+    top: 0; width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: var(--transition);
+}
+.navbar.scrolled { padding: 15px 5%; }
+.logo { font-size: 1.5rem; font-weight: 700; color: var(--bg-dark); }
+.logo span { color: var(--primary-color); }
+.nav-links { display: flex; list-style: none; gap: 30px; align-items: center; }
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: var(--transition);
+}
+.nav-links a:hover { color: var(--primary-color); }
+.hamburger { display: none; font-size: 1.5rem; cursor: pointer; }
+
+/* --- Hero Section --- */
+.hero {
+    height: 100vh;
+    background: linear-gradient(135deg, var(--bg-dark), #1e1b4b);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-light);
+    padding: 0 20px;
+}
+.greeting { font-size: 1.2rem; margin-bottom: 10px; color: #cbd5e1; }
+.hero h1 { font-size: 4rem; margin-bottom: 20px; }
+.hero h1 span {
+    background: linear-gradient(135deg, #a5b4fc, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.tagline { max-width: 600px; margin: 0 auto 30px; font-size: 1.1rem; color: #94a3b8; }
+.hero-btns { display: flex; gap: 20px; justify-content: center; margin-bottom: 30px; }
+.social-links a { color: var(--text-light); font-size: 1.5rem; margin: 0 10px; transition: var(--transition); }
+.social-links a:hover { color: var(--primary-color); transform: scale(1.1); }
+
+/* --- About & Skills --- */
+.about-content { max-width: 800px; margin: 0 auto; text-align: center; font-size: 1.1rem; }
+.skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 30px; text-align: center;
+}
+.skill-card {
+    background: #fff; padding: 30px 20px; border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: var(--transition);
+}
+.skill-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(79, 70, 229, 0.1); }
+.skill-card i { font-size: 3rem; color: var(--primary-color); margin-bottom: 15px; }
+
+/* --- Projects --- */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+.project-card {
+    background: #fff; border-radius: 12px; overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: var(--transition);
+}
+.project-card:hover { transform: translateY(-10px); }
+.project-img { height: 200px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.5rem; font-weight: bold; }
+.bg-gradient-1 { background: linear-gradient(135deg, #f43f5e, #fb923c); }
+.bg-gradient-2 { background: linear-gradient(135deg, #10b981, #3b82f6); }
+.bg-gradient-3 { background: linear-gradient(135deg, #6366f1, #d946ef); }
+.project-info { padding: 25px; }
+.project-info h3 { margin-bottom: 10px; }
+.project-info p { color: #64748b; margin-bottom: 20px; font-size: 0.95rem; }
+.btn-text { color: var(--primary-color); text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 5px; }
+.btn-text:hover i { transform: translateX(5px); transition: var(--transition); }
+
+/* --- Services & Testimonials --- */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: center; }
+.service-card { background: #fff; padding: 40px 20px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.service-card i { font-size: 2.5rem; color: var(--secondary-color); margin-bottom: 20px; }
+.testimonial-card { max-width: 600px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 12px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.stars { color: #fbbf24; font-size: 1.5rem; margin-bottom: 15px; }
+
+/* --- Contact --- */
+.contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.contact-link { color: var(--text-dark); text-decoration: none; font-weight: 600; font-size: 1.1rem; }
+.contact-form { display: flex; flex-direction: column; gap: 20px; }
+.contact-form input, .contact-form textarea { padding: 15px; border: 1px solid #e2e8f0; border-radius: 8px; font-family: inherit; outline: none; }
+.contact-form input:focus, .contact-form textarea:focus { border-color: var(--primary-color); }
+
+footer { text-align: center; padding: 30px; background: var(--bg-dark); color: #94a3b8; }
+
+/* --- Animations & Media Queries --- */
+.reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+    .nav-links { position: absolute; top: 100%; left: -100%; width: 100%; background: #fff; flex-direction: column; padding: 20px 0; transition: 0.3s; box-shadow: 0 10px 10px rgba(0,0,0,0.1); }
+    .nav-links.active { left: 0; }
+    .hamburger { display: block; }
+    .hero h1 { font-size: 2.5rem; }
+    .contact-wrapper { grid-template-columns: 1fr; }
+    .hero-btns { flex-direction: column; }
+}
+/* Add this to your existing .project-card and .skill-card CSS */
+.project-card, .skill-card {
+    transform-style: preserve-3d; /* Enables 3D depth */
+    will-change: transform;
+}
+
+/* This makes the inner content float above the card background */
+.project-info, .skill-card i, .skill-card h3 {
+    transform: translateZ(30px); /* Pushes the text forward in 3D space */
+}
+/* Find this in your style.css */
+.logo { font-size: 1.5rem; font-weight: 700; color: var(--bg-dark); }
+.logo span { color: var(--primary-color); } /* This colors the text inside the <span> */
